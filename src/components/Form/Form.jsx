@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useCallback } from "react";
 
 import { useInput } from "../../hooks/useInput";
 import { useTelegram } from "../../hooks/useTelegram";
@@ -11,6 +12,24 @@ export const Form = () => {
   const [city, onChangeCity] = useInput();
   const [street, onChangeStreet] = useInput();
   const { tg } = useTelegram();
+
+  const onSendData = useCallback(() => {
+    const data = {
+      country,
+      city,
+      street,
+      subject,
+    };
+
+    tg.sendData(JSON.stringify(data));
+  }, [country, city, street, subject]);
+
+  useEffect(() => {
+    tg.WebApp.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.WebApp.offEvent("mainButtonClicked", onSendData);
+    };
+  }, []);
 
   useEffect(() => {
     tg.MainButton.setParams({
