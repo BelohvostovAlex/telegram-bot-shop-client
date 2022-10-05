@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   { id: 1, title: "DeLonghi Magnifica S", price: 1100, desc: "Coffee machine" },
   {
     id: 2,

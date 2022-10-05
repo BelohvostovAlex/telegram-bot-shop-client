@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ProductItem } from "../ProductItem/ProductItem";
 
@@ -28,7 +28,7 @@ export const ProductList = () => {
   };
 
   return (
-    <div>
+    <div className="list">
       {products.map((item) => (
         <ProductItem
           key={item.id}
