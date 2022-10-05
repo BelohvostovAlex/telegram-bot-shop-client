@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { Header } from "./components/Header/Header";
+import { AppRouter } from "./components/Router/AppRouter";
 import { useTelegram } from "./hooks/useTelegram";
 
 export const App = () => {
@@ -12,7 +13,7 @@ export const App = () => {
   return (
     <div>
       <Header />
-      <button onClick={onToggleButton}>toggle</button>
+      <AppRouter />
     </div>
   );
 };
