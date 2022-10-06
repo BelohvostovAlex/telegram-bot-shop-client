@@ -18,5 +18,6 @@ export const useTelegram = () => {
     user: tg.initDataUnsafe?.user?.username,
     onClose,
     onToggleButton,
+    queryId: tg.initDataUnsafe?.query_id,
   };
 };

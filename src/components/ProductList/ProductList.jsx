@@ -9,9 +9,32 @@ import { getTotalPrice } from "../../helpers/getTotalPrice";
 import { onAddItem } from "../../helpers/onAddItem";
 
 export const ProductList = () => {
-  const { tg } = useTelegram();
+  const { tg, queryId } = useTelegram();
 
   const [addedItems, setAddedItems] = useState([]);
+
+  const onSendData = useCallback(() => {
+    const data = {
+      products: addedItems,
+      totalPrice: getTotalPrice(addedItems),
+      queryId,
+    };
+
+    fetch("http://localhost:8000", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }, []);
+
+  useEffect(() => {
+    tg.WebApp.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.WebApp.offEvent("mainButtonClicked", onSendData);
+    };
+  }, []);
 
   const onAdd = (product) => {
     let newItems = onAddItem(addedItems, product);
