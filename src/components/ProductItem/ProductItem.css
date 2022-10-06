@@ -3,13 +3,13 @@
   flex-direction: column;
   border: 1px solid var(--tg-theme-button-color);
   padding: 15px;
-  width: 170px;
+  width: 160px;
 }
 
 .img {
   width: 100%;
   background-color: lightgray;
-  height: 100px;
+  height: auto;
   margin: 0 auto;
   background-color: var(--tg-theme-button-color);
 }
