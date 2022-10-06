@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 
 import { useInput } from "../../hooks/useInput";
 import { useTelegram } from "../../hooks/useTelegram";
