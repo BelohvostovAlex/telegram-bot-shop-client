@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import { ProductItem } from "../ProductItem/ProductItem";
 
@@ -27,12 +27,12 @@ export const ProductList = () => {
       },
       body: JSON.stringify(data),
     });
-  }, []);
+  }, [addedItems]);
 
   useEffect(() => {
-    tg.WebApp.onEvent("mainButtonClicked", onSendData);
+    tg.onEvent("mainButtonClicked", onSendData);
     return () => {
-      tg.WebApp.offEvent("mainButtonClicked", onSendData);
+      tg.offEvent("mainButtonClicked", onSendData);
     };
   }, []);
 
